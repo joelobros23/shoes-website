@@ -1,0 +1,56 @@
+body {
+    margin: 0px;
+    overflow: hidden;
+}
+
+.text {
+ position: absolute;
+ font-size: xx-large;
+ z-index: 90;
+}
+
+#page1 {
+
+    width: 100%;
+    height: 100vh;
+}
+
+#page2 {
+
+    width: 100%;
+    height: 100vh;
+}
+
+#page3 {
+
+    width: 100%;
+    height: 100vh;
+}
+
+#page4 {
+
+    width: 100%;
+    height: 100vh;
+}
+
+.page {
+  height: 100vh;
+  font-size: xx-large;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.5s ease-in-out;
+}
+
+.page.active {
+  transform: translateY(0%);
+}
+
+.page.next {
+  transform: translateY(100%);
+}
+
+.page.previous {
+  transform: translateY(-100%);
+}
