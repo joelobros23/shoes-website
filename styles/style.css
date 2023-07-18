@@ -3,6 +3,20 @@ body {
     overflow: hidden;
 }
 
+nav {
+  display: flex;
+  background-color: rgb(44, 129, 255);
+  color: white;
+  width: 100%;
+  height: 200px;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+
 .text {
  position: absolute;
  font-size: xx-large;
@@ -10,9 +24,8 @@ body {
 }
 
 #page1 {
-
     width: 100%;
-    height: 100vh;
+    height: 90vh;
 }
 
 #page2 {
@@ -35,8 +48,6 @@ body {
 
 .page {
   height: 100vh;
-  font-size: xx-large;
-  text-align: center;
   position: absolute;
   top: 0;
   left: 0;
