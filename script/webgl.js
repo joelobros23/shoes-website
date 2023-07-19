@@ -47,7 +47,7 @@ const rotationSets = [
 ];
 
 let currentRotationSetIndex = 0;
-let animationMixer; // Animation mixer to control the model animations
+let animationMixer;
 
 loader.load('../3d/shoes-main.glb', function (gltf) {
   model = gltf.scene;
@@ -64,35 +64,35 @@ loader.load('../3d/shoes-main.glb', function (gltf) {
     }
   });
 
-  // Set the initial rotation and camera position
+
   setRotationFromSet(currentRotationSetIndex);
 });
 
 function setRotationFromSet(index) {
   const rotationSet = rotationSets[index];
 
-  // Check if there is an active animation action and stop it
+
   if (animationMixer && animationMixer._actions.length > 0) {
     const activeAction = animationMixer._actions[0];
     activeAction.stop();
   }
 
-  // Rotate the model with animation
+
   const rotationAnimation = new TWEEN.Tween(model.rotation)
-    .to(rotationSet, 1000) // Animation duration: 1000ms (1 second)
-    .easing(TWEEN.Easing.Quadratic.Out) // Easing function for smooth animation
+    .to(rotationSet, 500) 
+    .easing(TWEEN.Easing.Quadratic.Out)
     .start();
 
-  // Animate the camera position
+ 
   const cameraPositionAnimation = new TWEEN.Tween(camera.position)
-    .to(rotationSet.cameraPosition, 1000) // Animation duration: 1000ms (1 second)
-    .easing(TWEEN.Easing.Quadratic.Out) // Easing function for smooth animation
+    .to(rotationSet.cameraPosition, 500)
+    .easing(TWEEN.Easing.Quadratic.Out)
     .start();
 
-  // Animate the light position
+
   const lightPositionAnimation = new TWEEN.Tween(light.position)
-    .to(rotationSet.lightPosition, 1000) // Animation duration: 1000ms (1 second)
-    .easing(TWEEN.Easing.Quadratic.Out) // Easing function for smooth animation
+    .to(rotationSet.lightPosition, 500)
+    .easing(TWEEN.Easing.Quadratic.Out)
     .start();
 
   // Create an animation mixer if it doesn't exist

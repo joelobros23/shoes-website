@@ -44,6 +44,22 @@ nav ul {
   width: 30%;
 }
 
+.tagline2 {
+  font-family: tagline;
+  font-size: 30px;
+  color: white;
+  font-weight: 80;
+  width: 40%;
+  margin-right: 40PX;
+}
+
+.tagline2 P {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 20px !important;
+  color: white;
+  font-weight: 80;
+}
+
 .product-view {
   font-family: tagline;
   font-size: 80px;
@@ -53,7 +69,9 @@ nav ul {
   height: 70vh;
 }
 
+
 #page1 {
+  overflow: hidden;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -63,6 +81,7 @@ nav ul {
 }
 
 #page2 {
+  overflow: hidden;
   display: flex;
   position: absolute;
   z-index: -20;
@@ -71,7 +90,7 @@ nav ul {
   height: 100vh;
   justify-content: end;
   align-items: center;
-  background-color: rgb(13, 255, 134);
+  background-color: rgb(58, 179, 118);
 }
 
 #page3 {
