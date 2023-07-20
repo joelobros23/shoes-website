@@ -71,27 +71,27 @@ loader.load('../3d/shoes-main.glb', function (gltf) {
 function setRotationFromSet(index) {
   const rotationSet = rotationSets[index];
 
-
-  if (animationMixer && animationMixer._actions.length > 0) {
+  // Check if there is an active animation action and stop it
+  if (animationMixer && animationMixer._actions && animationMixer._actions.length > 0) {
     const activeAction = animationMixer._actions[0];
     activeAction.stop();
   }
 
 
   const rotationAnimation = new TWEEN.Tween(model.rotation)
-    .to(rotationSet, 500) 
+    .to(rotationSet, 1000) 
     .easing(TWEEN.Easing.Quadratic.Out)
     .start();
 
  
   const cameraPositionAnimation = new TWEEN.Tween(camera.position)
-    .to(rotationSet.cameraPosition, 500)
+    .to(rotationSet.cameraPosition, 1000)
     .easing(TWEEN.Easing.Quadratic.Out)
     .start();
 
 
   const lightPositionAnimation = new TWEEN.Tween(light.position)
-    .to(rotationSet.lightPosition, 500)
+    .to(rotationSet.lightPosition, 1000)
     .easing(TWEEN.Easing.Quadratic.Out)
     .start();
 
@@ -109,13 +109,36 @@ function setRotationFromSet(index) {
 
 function handleArrowKeyPress(event) {
   if (event.key === 'ArrowDown') {
-    currentRotationSetIndex = (currentRotationSetIndex + 1) % rotationSets.length;
-    setRotationFromSet(currentRotationSetIndex);
+    // Check if the current rotation set index is already at the last set
+    if (currentRotationSetIndex < rotationSets.length - 1) {
+      currentRotationSetIndex++;
+      setRotationFromSet(currentRotationSetIndex);
+    }
   } else if (event.key === 'ArrowUp') {
-    currentRotationSetIndex = (currentRotationSetIndex - 1 + rotationSets.length) % rotationSets.length;
+    // Check if the current rotation set index is already at the first set
+    if (currentRotationSetIndex > 0) {
+      currentRotationSetIndex--;
+      setRotationFromSet(currentRotationSetIndex);
+    }
+  }
+}
+
+// Function to handle the arrow button click events
+function handleArrowButtonClick(direction) {
+  // Calculate the new rotation set index based on the direction
+  const newRotationSetIndex = currentRotationSetIndex + direction;
+
+  // Check if the new index is within the valid range
+  if (newRotationSetIndex >= 0 && newRotationSetIndex < rotationSets.length) {
+    currentRotationSetIndex = newRotationSetIndex;
     setRotationFromSet(currentRotationSetIndex);
   }
 }
+
+// Add the event listeners after the handleArrowButtonClick function is defined
+document.querySelector('.arrow-up').addEventListener('click', () => handleArrowButtonClick(-1));
+document.querySelector('.arrow-down').addEventListener('click', () => handleArrowButtonClick(1));
+
 
 document.addEventListener('keydown', handleArrowKeyPress);
 
